@@ -1,24 +1,34 @@
 class Solution {
 public:
-    vector<int> plusOne(vector<int>& dig) {
-        reverse(dig.begin(), dig.end());
-        int i = 0;
-        int n = dig.size();
-        
-        if (dig[i] != 9) dig[i]++;
-        else {
-            while (dig[i] >= 9) {
-                dig[i] = 0;
-                if (i + 1 == n) dig.push_back(1);
-                else {
-                    i++;
-                    dig[i]++;
-                    if (dig[i] == 9) break;
-                }
+    vector<int> plusOne(vector<int>& digits) {
+        int n = digits.size();
+        int c = 0;
+
+        for (int j = 0; j < n; j++) {
+            if (digits[j] == 9)
+                c++;
+        }
+
+        if (c == n) {
+            digits.resize(n + 1);
+            digits[0] = 1;
+            for (int j = 1; j <= n; j++) {
+                digits[j] = 0;
+            }
+            return digits;
+        }
+
+        // 🔥 ALWAYS add 1 first
+        digits[n - 1]++;
+
+        // 🔥 Fix carry propagation
+        for (int i = n - 1; i > 0; i--) {
+            if (digits[i] == 10) {
+                digits[i] = 0;
+                digits[i - 1]++;
             }
         }
 
-        reverse(dig.begin(), dig.end());
-        return dig;
+        return digits;
     }
 };
