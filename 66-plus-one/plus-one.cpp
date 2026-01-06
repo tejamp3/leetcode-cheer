@@ -19,7 +19,7 @@ public:
         }
 
         // 🔥 ALWAYS add 1 first
-        digits[n - 1]++;
+        digits[n-1]++;
 
         // 🔥 Fix carry propagation
         for (int i = n - 1; i > 0; i--) {
