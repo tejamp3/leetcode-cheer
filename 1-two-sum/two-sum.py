@@ -1,17 +1,7 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        ans=[]
-        hmap = {}
+    def twoSum(self, nums, target):
         for i in range(len(nums)):
-            hmap[nums[i]]=i
-        for i in range (len(nums)):
-            find =(target - nums[i])
-            if find in hmap and hmap[find] != i:
-                ans.append(i)
-                ans.append(hmap[find])
-                break
-            
-            
-            
-        
-        return ans
+            for j in range(i + 1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        return []  # Return an empty list if no solution is found
